@@ -21,8 +21,6 @@ public class MyTask extends RecursiveTask<Long> {
             List<RecursiveTask<Long>> subTasks = createSubTasks();
             for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
-            }
-            for (RecursiveTask<Long> subTask : subTasks) {
                 result += subTask.join();
             }
         } else {
