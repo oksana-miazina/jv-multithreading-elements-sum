@@ -21,9 +21,16 @@ public class MyTask extends RecursiveTask<Long> {
             List<RecursiveTask<Long>> subTasks = createSubTasks();
             for (RecursiveTask<Long> subTask : subTasks) {
                 subTask.fork();
+            }
+            for (RecursiveTask<Long> subTask : subTasks) {
                 result += subTask.join();
             }
         } else {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             for (int i = startPoint; i < finishPoint; i++) {
                 result += i;
             }
