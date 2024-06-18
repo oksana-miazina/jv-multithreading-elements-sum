@@ -26,11 +26,6 @@ public class MyTask extends RecursiveTask<Long> {
                 result += subTask.join();
             }
         } else {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             for (int i = startPoint; i < finishPoint; i++) {
                 result += i;
             }
