@@ -33,16 +33,9 @@ public class MyTask extends RecursiveTask<Long> {
 
     private List<RecursiveTask<Long>> createSubTasks() {
         List<RecursiveTask<Long>> subTasks = new ArrayList<>();
-        int lastLength = (finishPoint - startPoint) % MAX_LENGTH;
-
-        for (int i = startPoint; i <= finishPoint; i += MAX_LENGTH) {
-            if (finishPoint - i >= MAX_LENGTH) {
-                subTasks.add(new MyTask(i, i + MAX_LENGTH));
-            } else {
-                subTasks.add(new MyTask(i, i + lastLength));
-                break;
-            }
-        }
+        int midPoint = (startPoint + finishPoint) / 2;
+        subTasks.add(new MyTask(startPoint, midPoint));
+        subTasks.add(new MyTask(midPoint, finishPoint));
         return subTasks;
     }
 }
